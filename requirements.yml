@@ -1,0 +1,3 @@
+# ansible galaxy 
+- src: geerlingguy.nodejs
+- src: wtanaka.gcloud_sdk
