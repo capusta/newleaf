@@ -7,3 +7,9 @@
   tasks:
     - apt:
         name: tig
+    - copy:
+        dest: /etc/environment
+        content: |
+          PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/vagrant"
+    - npm:
+        path: /vagrant/

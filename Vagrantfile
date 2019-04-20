@@ -8,6 +8,8 @@ Vagrant.configure("2") do |config|
     v.cpus = 2
   end
 
+  config.vm.network "forwarded_port", guest: 3000, host: 3000
+
   config.vm.provision "ansible_local" do |ansible|
     ansible.install_mode = "pip"
     ansible.galaxy_role_file = "requirements.yml"
