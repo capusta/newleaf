@@ -3,10 +3,13 @@
   "version": "0.2.0",
   "private": true,
   "dependencies": {
+    "bip32": "^1.0.4",
+    "bip39": "^3.0.1",
+    "bitcoinjs-lib": "^5.0.2",
     "express": "^4.16.4"
   },
   "scripts": {
-    "start": "echo 'not implemented'",
+    "start": "node main.js",
     "test": "echo 'not implemented'"
   }
 }

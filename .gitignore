@@ -65,3 +65,4 @@ roles/
 
 # vagrant
 .vagrant/
+.idea/

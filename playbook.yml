@@ -7,9 +7,11 @@
   tasks:
     - apt:
         name: tig
+    # sample mnemonic - no not use for actual transfers
     - copy:
         dest: /etc/environment
         content: |
           PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/vagrant"
+          MNEMONIC="praise you muffin lion enable stalk grocery thing crumble myself license ghost"
     - npm:
         path: /vagrant/
