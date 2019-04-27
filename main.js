@@ -1,3 +1,7 @@
+const Express = require('express')
+
+var app = Express();
+
 const bitcoin = require('bitcoinjs-lib')
 const bip39 = require('bip39')
 const bip32 = require('bip32')
@@ -15,3 +19,10 @@ for (var i = 0; i < 5; ++i) {
     const derive_path = root_path+"/0/"+i;
     console.log(bitcoin.payments.p2wpkh({ pubkey: node.derivePath(derive_path).publicKey }).address)
 }
+
+app.get("/",(req,res)=>{
+    res.send('listening')
+})
+var server = app.listen(3000,() => {
+    console.log("Listening on "+server.address().port)
+})

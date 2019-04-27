@@ -13,5 +13,8 @@
         content: |
           PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/vagrant"
           MNEMONIC="praise you muffin lion enable stalk grocery thing crumble myself license ghost"
+    - lineinfile:
+        path: /home/vagrant/.bashrc
+        line: cd /vagrant
     - npm:
         path: /vagrant/
