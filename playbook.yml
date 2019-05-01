@@ -13,8 +13,14 @@
         content: |
           PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/vagrant"
           MNEMONIC="praise you muffin lion enable stalk grocery thing crumble myself license ghost"
+          NODE_ENV="development"
+          PORT=3000
     - lineinfile:
         path: /home/vagrant/.bashrc
-        line: cd /vagrant
+        line: cd /vagrant; shopt -s histappend;
     - npm:
         path: /vagrant/
+    - command: ps aux
+      register: forever_list
+    - command: /usr/local/lib/npm/bin/forever start -o /vagrant/logs/main.log /vagrant/main.json 
+      when: "forever_list.stdout.find('monitor main.js') == -1"

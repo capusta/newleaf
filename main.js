@@ -23,6 +23,8 @@ for (var i = 0; i < 5; ++i) {
 app.get("/",(req,res)=>{
     res.send('listening')
 })
-var server = app.listen(3000,() => {
+
+const port = process.env.PORT;
+var server = app.listen(port,() => {
     console.log("Listening on "+server.address().port)
 })
