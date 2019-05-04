@@ -20,8 +20,10 @@ for (var i = 0; i < 5; ++i) {
     console.log(bitcoin.payments.p2wpkh({ pubkey: node.derivePath(derive_path).publicKey }).address)
 }
 
+app.set('trust proxy', true)
+
 app.get("/",(req,res)=>{
-    res.send('listening')
+    res.json('Hello World')
 })
 
 const port = process.env.PORT;

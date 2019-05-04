@@ -1,0 +1,15 @@
+# npm
+node_modules/
+
+# local
+logs/*
+
+# ansible
+roles/*
+
+# Vim files
+*.swp
+
+# Provisioners
+*.yml
+*.yaml

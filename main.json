@@ -1,0 +1,11 @@
+{
+    "uid": "newleaf",
+    "max": "3",
+    "append": true,
+    "watch": true,
+    "script": "main.js",
+    "sourceDir": "/vagrant",
+    "cwd": "/vagrant",
+    "killTree": true,
+    "WatchDirectory": "/vagrant"
+}
