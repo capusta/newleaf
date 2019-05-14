@@ -14,9 +14,9 @@ app.get("/",(req,res)=>{
     res.json('Hello World')
 })
 
-
-app.use('/', btcnode.router);
-
+// To be spun off into its own thing
+app.use('/factory', btcnode.router);
+  
 const port = process.env.PORT;
 var server = app.listen(port,() => {
     console.log("Listening on "+server.address().port)
