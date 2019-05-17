@@ -16,9 +16,14 @@
     - lineinfile:
         path: /home/vagrant/.bashrc
         line: cd /vagrant; shopt -s histappend;
+    - name: make aliases
+      copy:
+        dest: /home/vagrant/.bash_aliases
+        content: |
+          alias g='gcloud'
     - npm:
         path: /vagrant/
     - command: ps aux
       register: forever_list
-    - command: /usr/local/lib/npm/bin/forever start -o /vagrant/logs/main.log /vagrant/main.json 
+    - command: /usr/local/lib/npm/bin/forever start -o /vagrant/logs/main.log /vagrant/main.json
       when: "forever_list.stdout.find('monitor main.js') == -1"
