@@ -1,5 +1,11 @@
-var express = require('express')
-var router = express.Router()
+var Express = require('express')
+var router = Express.Router()
+var app = Express();
+
+'use strict'
+require('dotenv').config()
+
+app.set('trust proxy', true)
 
 const bitcoin = require('bitcoinjs-lib')
 const bip39 = require('bip39')
@@ -31,8 +37,16 @@ router.get('/:id',function(req,res,next){
     })
 });
 
-// used by app
-module.exports.router = router
+app.use('/node', router);
 
-// attached to all requests
-module.exports.node = node
+var port = process.env.PORT;
+
+if (process.env.NODE_ENV == 'development') {
+    // in dev we have multiple processes
+    const parseArgs = require('minimist') (process.argv.slice(2))
+    port = parseArgs.port;
+}
+
+var server = app.listen(port,() => {
+    console.log("Listening on "+server.address().port)
+})

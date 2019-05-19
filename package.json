@@ -13,10 +13,11 @@
   },
   "scripts": {
     "prestart": "node getEnv",
-    "start": "node main.js",
+    "start": "node ${BOOTSTRAP_ENTRYPOINT}",
     "test": "echo 'not implemented'"
   },
   "devDependencies": {
-    "forever": "^1.0.0"
+    "forever": "^1.0.0",
+    "minimist": "^1.2.0"
   }
 }

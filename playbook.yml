@@ -25,5 +25,5 @@
         path: /vagrant/
     - command: ps aux
       register: forever_list
-    - command: /usr/local/lib/npm/bin/forever start -o /vagrant/logs/main.log /vagrant/main.json
+    - command: /vagrant/node_modules/forever/bin/forever start -o /vagrant/logs/main.log /vagrant/main.json
       when: "forever_list.stdout.find('monitor main.js') == -1"

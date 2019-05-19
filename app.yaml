@@ -1,1 +1,3 @@
 runtime: nodejs10
+env_variables:
+  BOOTSTRAP_ENTRYPOINT: './main.js'
