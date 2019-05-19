@@ -64,3 +64,5 @@ roles/
 # vagrant
 .vagrant/
 .idea/
+
+package-lock.json
