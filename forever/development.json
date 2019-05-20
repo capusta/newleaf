@@ -1,10 +1,9 @@
-[
-{
+[{
     "uid": "newleaf-s2",
     "max": "3",
     "append": true,
     "watch": true,
-    "script": "main.js",
+    "script": "app.js",
     "sourceDir": "/vagrant",
     "killTree": true,
     "WatchDirectory": "/vagrant",
@@ -15,10 +14,9 @@
     "max": "3",
     "append": true,
     "watch": true,
-    "script": "./node/main.js",
+    "script": "node/app.js",
     "sourceDir": "/vagrant",
     "killTree": true,
     "WatchDirectory": "/vagrant",
     "args": ["--port", "3001"]
-}
-]
+}]

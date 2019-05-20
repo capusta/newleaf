@@ -66,3 +66,4 @@ roles/
 .idea/
 
 package-lock.json
+auth.json

@@ -8,6 +8,12 @@
     - apt:
         name: tig
     # sample mnemonic - no not use for actual transfers
+    - stat:
+        path: /vagrant/.env
+      register: dotenv_setup
+    - debug:
+        msg: "WARNING - .env NOT SET UP, TEMPLATING WITH DEFAULT VALUES"
+      when: not dotenv_setup.stat.exists
     - copy:
         dest: /etc/environment
         content: |
@@ -25,5 +31,5 @@
         path: /vagrant/
     - command: ps aux
       register: forever_list
-    - command: /vagrant/node_modules/forever/bin/forever start -o /vagrant/logs/main.log /vagrant/main.json
-      when: "forever_list.stdout.find('monitor main.js') == -1"
+    - command: /vagrant/node_modules/forever/bin/forever start -l /vagrant/logs/main.log /vagrant/forever/development.json
+      when: "forever_list.stdout.find('monitor app.js') == -1"
