@@ -5,3 +5,11 @@
   tasks:
     - pip:
         name: [ requests, google-auth, boto]
+    - stat:
+        path: /vagrant/auth.json
+      register: json_auth_file
+    - debug:
+        msg: 'WARNING: ENDING PLAY /vagrant/auth.json not found'
+      when: not json_auth_file.stat.exists
+    - meta: end_play
+      when: not json_auth_file.stat.exists

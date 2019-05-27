@@ -58,8 +58,9 @@ typings/
 # next.js build output
 .next
 
-# galaxy roles
+# ansible
 roles/
+*.retry
 
 # vagrant
 .vagrant/
