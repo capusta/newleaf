@@ -11,33 +11,30 @@
     - stat:
         path: /vagrant/auth.json
       register: json_auth_file
+      tags: [ always ]
+    - stat:
+        path: /vagrant/.env
+      register: dotenv_setup
+      tags: [ always ]
+    - block:
+        - debug:
+            msg: "WARNING - .env NOT SET UP, TEMPLATING WITH DEFAULT VALUES"
+        - copy:
+            src: /vagrant/.env.example
+            dest: /vagrant/.env
+            remote_src: yes
+      when: not dotenv_setup.stat.exists
     - debug:
         msg: 'WARNING: ENDING PLAY /vagrant/auth.json not found'
       when: not json_auth_file.stat.exists
     - meta: end_play
       when: not json_auth_file.stat.exists
-    - gcp_storage_bucket:
-        name: "{{ authjson.project_id }}.appspot.com"
-        project: "{{ authjson.project_id }}"
-        auth_kind: "{{ authkind }}"
-        service_account_file: "{{ service_account_file }}"
-        versioning:
-          enabled: yes
-        state: present
-    - gcp_storage_object:
-        action: download
-        bucket: "{{ authjson.project_id }}.appspot.com"
-        dest: '/tmp/.env_downloaded'
-        src: ".env"
-        project: "{{ authjson.project_id }}"
-        auth_kind: serviceaccount
-        service_account_file: "{{ service_account_file }}"
-        state: present
-        scopes:
-          - https://www.googleapis.com/auth/devstorage.read_only
-      register: command_result
-      ignore_errors: yes
-      failed_when: false
-    - shell: "/usr/bin/gsutil cp -a bucket-owner-read /vagrant/.env gs://{{ authjson.project_id }}.appspot.com/.env"
+    - file:
+        path: /vagrant/ansible/scripts
+        state: directory
+    - template:
+        src: _setup.sh.j2
+        dest: /vagrant/ansible/scripts/setup.sh
+        mode: 0760
+    - shell: /vagrant/ansible/scripts/setup.sh
       tags: [ deploy ]
-      when: 'command_result.msg is defined or deploy is defined'

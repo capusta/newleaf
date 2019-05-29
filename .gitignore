@@ -61,10 +61,18 @@ typings/
 # ansible
 roles/
 *.retry
+# templated ansible deployment scripts
+ansible/scripts
 
 # vagrant
 .vagrant/
 .idea/
 
+# misc
 package-lock.json
+
+# this file needs to be manually populated
 auth.json
+
+# will be created from .env.example
+.env

@@ -7,13 +7,6 @@
   tasks:
     - apt:
         name: tig
-    # sample mnemonic - no not use for actual transfers
-    - stat:
-        path: /vagrant/.env
-      register: dotenv_setup
-    - debug:
-        msg: "WARNING - .env NOT SET UP, TEMPLATING WITH DEFAULT VALUES"
-      when: not dotenv_setup.stat.exists
     - copy:
         dest: /etc/environment
         content: |
