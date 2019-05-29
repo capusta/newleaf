@@ -1,7 +1,10 @@
 ---
 - hosts: all
-  become: yes
-  gather_facts: no
+  gather_facts: yes
+  vars:
+    service_account_file: /vagrant/auth.json
+    authjson: "{{ lookup('file', service_account_file) | from_json }}"
+    authkind: serviceaccount
   tasks:
     - pip:
         name: [ requests, google-auth, boto]
@@ -13,3 +16,28 @@
       when: not json_auth_file.stat.exists
     - meta: end_play
       when: not json_auth_file.stat.exists
+    - gcp_storage_bucket:
+        name: "{{ authjson.project_id }}.appspot.com"
+        project: "{{ authjson.project_id }}"
+        auth_kind: "{{ authkind }}"
+        service_account_file: "{{ service_account_file }}"
+        versioning:
+          enabled: yes
+        state: present
+    - gcp_storage_object:
+        action: download
+        bucket: "{{ authjson.project_id }}.appspot.com"
+        dest: '/tmp/.env_downloaded'
+        src: ".env"
+        project: "{{ authjson.project_id }}"
+        auth_kind: serviceaccount
+        service_account_file: "{{ service_account_file }}"
+        state: present
+        scopes:
+          - https://www.googleapis.com/auth/devstorage.read_only
+      register: command_result
+      ignore_errors: yes
+      failed_when: false
+    - shell: "/usr/bin/gsutil cp -a bucket-owner-read /vagrant/.env gs://{{ authjson.project_id }}.appspot.com/.env"
+      tags: [ deploy ]
+      when: 'command_result.msg is defined or deploy is defined'
