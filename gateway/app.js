@@ -2,8 +2,9 @@ const Express = require('express')
   
 var app = Express();
 
-'use strict'
-require('dotenv').config()
+// no need for this now
+//'use strict'
+//require('dotenv').config()
 
 app.set('trust proxy', true)
 
@@ -25,4 +26,5 @@ if (process.env.NODE_ENV == 'development') {
 
 var server = app.listen(port,() => {
     console.log("Listening on "+server.address().port)
+    console.log(`using mnemonic ${process.env.MNEMONIC}`)
 })

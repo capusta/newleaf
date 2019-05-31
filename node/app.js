@@ -3,9 +3,11 @@ var router = Express.Router()
 var app = Express();
 
 'use strict'
-require('dotenv').config()
+require('dotenv').config();
 
-app.set('trust proxy', true)
+app.set('trust proxy', true);
+
+var fs = require('fs');
 
 const bitcoin = require('bitcoinjs-lib')
 const bip39 = require('bip39')
@@ -37,8 +39,6 @@ router.get('/:id',function(req,res,next){
     })
 });
 
-app.use('/node', router);
-
 var port = process.env.PORT;
 
 if (process.env.NODE_ENV == 'development') {
@@ -49,4 +49,5 @@ if (process.env.NODE_ENV == 'development') {
 
 var server = app.listen(port,() => {
     console.log("Listening on "+server.address().port)
+    console.log(`using menmonic ${process.env.MNEMONIC}`)
 })

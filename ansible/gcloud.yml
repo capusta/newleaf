@@ -16,14 +16,6 @@
         path: /vagrant/.env
       register: dotenv_setup
       tags: [ always ]
-    - block:
-        - debug:
-            msg: "WARNING - .env NOT SET UP, TEMPLATING WITH DEFAULT VALUES"
-        - copy:
-            src: /vagrant/.env.example
-            dest: /vagrant/.env
-            remote_src: yes
-      when: not dotenv_setup.stat.exists
     - debug:
         msg: 'WARNING: ENDING PLAY /vagrant/auth.json not found'
       when: not json_auth_file.stat.exists

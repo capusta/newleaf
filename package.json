@@ -12,9 +12,8 @@
     "qrcode": "^1.3.3"
   },
   "scripts": {
-    "prestart": "node getEnv",
-    "start": "node ${BOOTSTRAP_ENTRYPOINT}",
-    "test": "echo 'not implemented'"
+    "start": "node $BOOTSTRAP_ENTRYPOINT",
+    "gcp-build": "node getEnv"
   },
   "devDependencies": {
     "forever": "^1.0.0",

@@ -4,22 +4,27 @@ const fs = require('fs')
 
 const dotEnvPresent = fs.existsSync('.env')
 
-if (dotEnvPresent){
+if (!dotEnvPresent){
   if (process.env.NODE_ENV == 'development') {
-    // dev present ... nothing to do
-    console.log('dev .env exists')
+    // generate .env file by copying .env.example
+    fs.copyFile('.env.example','.env',(err)=> {
+        if(err) throw err;
+        console.info('warning: regenerated dot env')
+    })
   } else {
-    // prod present ... nothing to do
-    console.log('prod .env exists')
+    // production grabs .env from bucket
+    const {Storage} = require('@google-cloud/storage');
+    const bucketName = `${process.env.GOOGLE_CLOUD_PROJECT}.appspot.com`;
+    console.info(`using bucket ${bucketName}`);
+    const gcs = new Storage();
+    gcs.bucket(bucketName).file('.env').download({ destination: '.env'})
+        .then(()=>{
+            console.info(`getEnv.js: successfully downloaded .env from ${bucketName}`)
+        })
+        .catch((e)=>{
+            console.error(`getEnv.js: error downloading .env: ${JSON.stringify(e, undefined,2)}`)
+        })
   }
 } else {
-  if (process.env.NODE_ENV == 'development') {
-    // dev absent ... nothing to do
-    console.err('dev .env file missing - try running ansible')
-  } else {
-    // production
-    const gcs = require('@google-cloud/storage')()
-    // TODO: handle bucket download
-  }
-    console.err('.env file missing')
+    console.info(`getEnv.js: .env present`)
 }

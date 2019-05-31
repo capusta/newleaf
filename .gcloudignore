@@ -16,3 +16,10 @@
 # Node.js dependencies:
 node_modules/
 .env
+
+#ansible
+ansible/
+roles/
+
+# dev shit
+forever/
