@@ -12,10 +12,6 @@
         path: /vagrant/auth.json
       register: json_auth_file
       tags: [ always ]
-    - stat:
-        path: /vagrant/.env
-      register: dotenv_setup
-      tags: [ always ]
     - debug:
         msg: 'WARNING: ENDING PLAY /vagrant/auth.json not found'
       when: not json_auth_file.stat.exists
@@ -29,4 +25,7 @@
         dest: /vagrant/ansible/scripts/setup.sh
         mode: 0760
     - shell: /vagrant/ansible/scripts/setup.sh
+      args:
+        chdir: /vagrant
+      when: deploy is defined and deploy|bool
       tags: [ deploy ]

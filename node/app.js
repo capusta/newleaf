@@ -47,6 +47,7 @@ if (process.env.NODE_ENV == 'development') {
     port = parseArgs.port;
 }
 
+app.use(router);
 var server = app.listen(port,() => {
     console.log("Listening on "+server.address().port)
     console.log(`using menmonic ${process.env.MNEMONIC}`)
