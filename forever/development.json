@@ -3,7 +3,7 @@
     "max": "3",
     "append": true,
     "watch": true,
-    "script": "app.js",
+    "script": "gateway/app.js",
     "sourceDir": "/vagrant",
     "killTree": true,
     "WatchDirectory": "/vagrant",
