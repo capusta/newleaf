@@ -19,4 +19,15 @@
     "killTree": true,
     "WatchDirectory": "/vagrant",
     "args": ["--port", "3001"]
-}]
+},
+{
+    "uid": "newleaf-react",
+    "max": "3",
+    "append": true,
+    "watch": true,
+    "script": "react-scripts start",
+    "sourceDir": "/vagrant",
+    "killTree": true,
+    "args": ["--port", "3001"]
+},
+]
