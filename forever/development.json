@@ -7,7 +7,7 @@
     "sourceDir": "/vagrant",
     "killTree": true,
     "WatchDirectory": "/vagrant",
-    "args": ["--port", "3000"]
+    "args": ["--port", "3001"]
 },
 {
     "uid": "newleaf-node",
@@ -18,7 +18,7 @@
     "sourceDir": "/vagrant",
     "killTree": true,
     "WatchDirectory": "/vagrant",
-    "args": ["--port", "3001"]
+    "args": ["--port", "3002"]
 },
 {
     "uid": "newleaf-react",
@@ -27,7 +27,6 @@
     "watch": true,
     "script": "react-scripts start",
     "sourceDir": "/vagrant",
-    "killTree": true,
-    "args": ["--port", "3001"]
+    "killTree": true
 },
 ]
