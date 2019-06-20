@@ -24,9 +24,10 @@
     "uid": "newleaf-react",
     "max": "3",
     "append": true,
-    "watch": true,
-    "script": "react-scripts start",
-    "sourceDir": "/vagrant",
-    "killTree": true
-},
+    "watch": false,
+    "script": "/usr/local/lib/npm/bin/react-scripts",
+    "workingDir": "/vagrant",
+    "killTree": true,
+    "args": ["start"]
+}
 ]
