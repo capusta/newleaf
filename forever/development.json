@@ -25,8 +25,8 @@
     "max": "3",
     "append": true,
     "watch": false,
-    "script": "/usr/local/lib/npm/bin/react-scripts",
-    "workingDir": "/vagrant",
+    "script": "node_modules/react-scripts/bin/react-scripts.js",
+    "sourceDir": "/vagrant",
     "killTree": true,
     "args": ["start"]
 }

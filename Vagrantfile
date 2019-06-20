@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "dev", type: "ansible_local", run: "never" do |ansible|
     ansible.playbook = "ansible/playbook.yml"
-    ansible.raw_arguments = ["-Dv -t dev]
+    ansible.raw_arguments = ["-Dv -t dev"]
   end
 
   config.vm.provision "gcloud", type: "ansible_local", run: "never" do |ansible|
