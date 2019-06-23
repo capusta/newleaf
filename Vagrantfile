@@ -13,7 +13,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, :inline => "sudo rm /etc/localtime && sudo ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime", run: "always"
 
   config.vm.network "forwarded_port", guest: 3000, host: 3000, id: 'app_http'
-  config.vm.network "forwarded_port", guest: 3001, host: 3001, id: 'node_http'
+  config.vm.network "forwarded_port", guest: 3001, host: 3001, id: 'node_gateway'
+  config.vm.network "forwarded_port", guest: 3002, host: 3002, id: 'node_wallet'
 
   config.vm.provision "ansible_local" do |ansible|
     ansible.install_mode = "pip"

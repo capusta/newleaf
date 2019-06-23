@@ -1,5 +1,5 @@
 [{
-    "uid": "newleaf-s2",
+    "uid": "newleaf-frontend",
     "max": "3",
     "append": true,
     "watch": true,
@@ -10,7 +10,7 @@
     "args": ["--port", "3001"]
 },
 {
-    "uid": "newleaf-node",
+    "uid": "newleaf-wallet",
     "max": "3",
     "append": true,
     "watch": true,
