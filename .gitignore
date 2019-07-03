@@ -76,6 +76,7 @@ auth.json
 
 # will be created from .env.example
 .env
+.env.local
 
 # react artifact
 build/

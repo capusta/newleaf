@@ -8,6 +8,7 @@
   tasks:
     - pip:
         name: [ requests, google-auth, boto]
+      become: yes
     - stat:
         path: /vagrant/auth.json
       register: json_auth_file
