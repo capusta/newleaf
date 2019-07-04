@@ -5,7 +5,7 @@ const fs = require('fs')
 // populate .env file in local development mode and in production Google Apps Engine
 const dotEnvPresent = fs.existsSync('.env')
 if (!dotEnvPresent){
-  if (process.env.NODE_ENV == 'development') {
+  if (process.env.NODE_ENV == 'dev') {
     // generate .env file by copying .env.example (or make your own .env file)
     fs.copyFile('.env.example','.env',(err)=> {
         if(err) throw err;
@@ -19,14 +19,14 @@ if (!dotEnvPresent){
     const gcs = new Storage();
     gcs.bucket(bucketName).file('.env').download({ destination: '.env'})
         .then(()=>{
-            console.info(`getEnv.js: successfully downloaded .env from ${bucketName}`)
+            console.info(`getEnv.js: info: successfully downloaded .env from ${bucketName}`)
         })
         .catch((e)=>{
-            console.error(`getEnv.js: error downloading .env: ${JSON.stringify(e, undefined,2)}`)
+            console.error(`getEnv.js: error: error downloading .env: ${JSON.stringify(e, undefined,2)}`)
         })
   }
 } else {
-    console.info(`Environment Variables Configured`)
+    console.info(`getEnv.js: info: .env is present`)
 }
 
 // populate .env.local file in local development mode and in production Google Apps Engine
@@ -42,12 +42,11 @@ if (!dotEnvReactPresent){
     } else {
     // production-specific
     }
-
   // all environments
   require('dotenv').config()
   var crypto = require('crypto')
-  data.REACT_APP_MNEMONIC_TAIL = crypto.createHash('sha256').update(process.env.MNEMONIC).digest('base64').slice(-5);
+  data.REACT_APP_MNEMONIC_TAIL = crypto.createHash('sha256').update(process.env.MNEMONIC).digest('base64').slice(-8);
   Object.keys(data).forEach(key => { fs.appendFileSync('.env.local', `${key}=${data[key]}\n`)})
 } else {
-    console.info(`React Service Routes Configured`)
+    console.info(`getEnv.js: info: React Service Routes Configured`)
 }
