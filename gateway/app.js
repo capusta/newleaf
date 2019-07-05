@@ -18,7 +18,7 @@ app.get('/ping',function(req,res){
 
 var port = process.env.PORT;
 
-if (process.env.NODE_ENV == 'development') {
+if (process.env.NODE_ENV == 'dev') {
     // in dev we have multiple processes
     const parseArgs = require('minimist') (process.argv.slice(2))
     port = parseArgs.port;

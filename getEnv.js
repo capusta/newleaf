@@ -1,16 +1,26 @@
 'use strict'
 
-const fs = require('fs')
+const fs = require('fs');
+const fetch = require('node-fetch');
+
+const url = 'http://metadata.google.internal/computeMetadata/v1/project/project-id'
 
 // populate .env file in local development mode and in production Google Apps Engine
 const dotEnvPresent = fs.existsSync('.env')
+
+// populate .env.local file in local development mode and in production Google Apps Engine
+var data = {}
+data.REACT_APP_GATEWAY_SERVICE = 'http://localhost:3001'
+data.REACT_APP_WALLET_SERVICE = 'http://localhost:3002'
+
 if (!dotEnvPresent){
   if (process.env.NODE_ENV == 'dev') {
     // generate .env file by copying .env.example (or make your own .env file)
     fs.copyFile('.env.example','.env',(err)=> {
-        if(err) throw err;
-        console.info('warning: regenerated dot env')
+      if(err) throw err;
+      console.info('getEnv.js: info: dev env regenerating .env')
     })
+    setReactVariables(data);
   } else {
     // production grabs .env from bucket, which is uploaded by ansible/_setup.sh.j2:9
     const {Storage} = require('@google-cloud/storage');
@@ -29,24 +39,12 @@ if (!dotEnvPresent){
     console.info(`getEnv.js: info: .env is present`)
 }
 
-// populate .env.local file in local development mode and in production Google Apps Engine
-const dotEnvReactPresent = fs.existsSync('.env.local')
-if (!dotEnvReactPresent){
-  var data = {
-    REACT_APP_WALLET_SERVICE: null,
-    REACT_APP_GATEWAY_SERVICE: null
-  }
-  if (process.env.NODE_ENV == 'development') {
-        data.REACT_APP_GATEWAY_SERVICE = 'http://localhost:3001'
-        data.REACT_APP_WALLET_SERVICE = 'http://localhost:3002'
-    } else {
-    // production-specific
-    }
-  // all environments
+function setReactVariables(data) {
   require('dotenv').config()
   var crypto = require('crypto')
-  data.REACT_APP_MNEMONIC_TAIL = crypto.createHash('sha256').update(process.env.MNEMONIC).digest('base64').slice(-8);
+  console.info(`getEnv.js: info: writing react routes and env vars`)
+  data.REACT_APP_MNEMONIC_TAIL = crypto.createHash('sha256').update(process.env.MNEMONIC).digest('base64').slice(-10);
   Object.keys(data).forEach(key => { fs.appendFileSync('.env.local', `${key}=${data[key]}\n`)})
-} else {
-    console.info(`getEnv.js: info: React Service Routes Configured`)
+  console.info(`getEnv.js: info: finished react routing with ${JSON.stringify(data)}`)
+  console.info(`getEnv.js: info: React Service Routes Configured`)
 }
