@@ -21,6 +21,11 @@ const node = bip32.fromSeed(bip39.mnemonicToSeedSync(mnemonic))
 // segwit native electrum compatible
 const root_path = "m/84'/0'/0'"
 
+// TODO: make this a variable from env
+app.use(function(req, res, next){
+    next();
+})
+
 router.get('/ping',function(req,res){
     res.end(JSON.stringify({ sha: node.identifier.toString('base64') }));
 })
