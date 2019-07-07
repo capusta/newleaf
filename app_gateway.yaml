@@ -1,4 +1,4 @@
 runtime: nodejs10
-service: default
+service: gateway
 env_variables:
   BOOTSTRAP_ENTRYPOINT: 'gateway/app.js'
