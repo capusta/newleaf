@@ -27,3 +27,4 @@
       tags: [ always ]
     - command: /vagrant/node_modules/forever/bin/forever start -l /vagrant/logs/main.log /vagrant/forever/development.json
       when: "forever_list.stdout.find('monitor gateway/app.js') == -1"
+      tags: [ dev ]
