@@ -12,6 +12,7 @@ const dotEnvPresent = fs.existsSync('.env')
 var data = {}
 data.REACT_APP_GATEWAY_SERVICE = 'http://localhost:3001'
 data.REACT_APP_WALLET_SERVICE = 'http://localhost:3002'
+data.REACT_APP_DEFAULT_SERVICE = "http://localhost:3000"
 
 if (!dotEnvPresent){
   if (process.env.NODE_ENV == 'dev') {
@@ -34,6 +35,8 @@ if (!dotEnvPresent){
       .then(bucketName => {
         data.REACT_APP_GATEWAY_SERVICE = "https://gateway-dot-"+bucketName+".appspot.com"
         data.REACT_APP_WALLET_SERVICE = "https://node-dot-"+bucketName+".appspot.com"
+        data.REACT_APP_DEFAULT_SERVICE = "https://default-dot-"+bucketName+".appspot.com"
+
         const {Storage} = require('@google-cloud/storage');
         const gcs = new Storage();
         console.info(`getEnv.js: info: using bucket ${bucketName}`);

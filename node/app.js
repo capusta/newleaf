@@ -4,6 +4,7 @@ var app = Express();
 
 'use strict'
 require('dotenv').config();
+require('dotenv').config({path: '.env.local'})
 
 app.set('trust proxy', true);
 
@@ -21,10 +22,9 @@ const node = bip32.fromSeed(bip39.mnemonicToSeedSync(mnemonic))
 // segwit native electrum compatible
 const root_path = "m/84'/0'/0'"
 
-// TODO: make this a variable from env
 app.use(function(req, res, next){
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.setHeader('Access-Control-Allow-Origin', process.env.REACT_APP_DEFAULT_SERVICE);
+    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 })
 
@@ -48,7 +48,7 @@ router.get('/:id',function(req,res,next){
 
 var port = process.env.PORT;
 
-if (process.env.NODE_ENV == 'development') {
+if (process.env.NODE_ENV == 'dev') {
     // in dev we have multiple processes
     const parseArgs = require('minimist') (process.argv.slice(2))
     port = parseArgs.port;
