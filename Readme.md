@@ -7,11 +7,18 @@ A devops-centered approach to deploying nicely wrapped code (for free!).
 5. Inside repository folder: `vagrant up`
 6. Visit [http://localhost:3000](http://localhost:3000)
 
+
+#### [Google Cloud](https://console.cloud.google.com/) Steps
+
+1.  [Create application]([https://cloud.google.com/appengine/docs/standard/nodejs/building-app/creating-project#creating-a-gcp-project](https://cloud.google.com/appengine/docs/standard/nodejs/building-app/creating-project#creating-a-gcp-project)) in google console, make service accounts, assign buckets permissions.
+  _Note: this will create a bucket based on project name_
+3.  [Create a service account](https://cloud.google.com/iam/docs/creating-managing-service-account-keys#iam-service-account-keys-create-console) and download the json key.  Name it `auth.json`
+
 #### Getting Started (Level 2)
-1.  Install google App Engine SDK 
-	`vagrant provision --provision-with gcloud`
-2.  [Create application]([https://cloud.google.com/appengine/docs/standard/nodejs/building-app/creating-project#creating-a-gcp-project](https://cloud.google.com/appengine/docs/standard/nodejs/building-app/creating-project#creating-a-gcp-project)) in google console, make service accounts, assign buckets permissions.  
-3. Iterate app a few times with
+1.  Install google App Engine SDK and format deployment scripts.  *this requires `auth.json` file to be present*
+   `vagrant provision --provision-with gcloud`
+2. Iterate app a few times with
   `vagrant provision --provision-with dev`
-4. Login into google:
-  1.  `vagrant ssh`
+3.  Deploy the application to google:
+  `vagrant provision --provision-with deploy`
+
