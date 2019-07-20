@@ -26,7 +26,16 @@
         dest: /vagrant/ansible/scripts/setup.sh
         mode: 0760
     - shell: /vagrant/ansible/scripts/setup.sh
+      async: 2000
+      poll: 0
+      register: deployment_sleeper
       args:
         chdir: /vagrant
       when: deploy is defined and deploy|bool
+      tags: [ deploy ]
+    - name: Check on deployment
+      register: is_deployed
+      async_status: jid={{ deployment_sleeper.ansible_job_id }}
+      until: is_deployed.finished
+      retries: 100
       tags: [ deploy ]

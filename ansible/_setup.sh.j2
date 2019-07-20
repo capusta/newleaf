@@ -1,6 +1,9 @@
 # {{ ansible_managed }}
 #! /usr/bin/env bash
 
+/usr/bin/gcloud config set core/project {{ authjson.project_id }}
+/usr/bin/gcloud config set disable_prompts true
+
 echo $PATH
 # set bucket versioning for easy recovery
 /usr/bin/gsutil versioning set on gs://{{ authjson.project_id }}.appspot.com
