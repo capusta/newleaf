@@ -45,8 +45,8 @@ render() {
             <b> server: </b> {this.state.serverId}
         </div>
     </div>
-    )
+    );
+    }
 };
-}
 
 export default Footer;
