@@ -23,7 +23,7 @@ const node = bip32.fromSeed(bip39.mnemonicToSeedSync(mnemonic))
 const root_path = "m/84'/0'/0'"
 
 app.use(function(req, res, next){
-    var allowedOrigins = [process.env.REACT_APP_DEFAULT_SERVICE, process.env.REACT_APP_BASE_SERVICE];
+    var allowedOrigins = [process.env.REACT_APP_DEFAULT_SERVICE, process.env.REACT_APP_WALLET_SERVICE];
     var origin = req.headers.origin;
     if(allowedOrigins.indexOf(origin) > -1){
        res.setHeader('Access-Control-Allow-Origin', origin);
