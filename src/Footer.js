@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Row,Col } from 'react-bootstrap';
 
 const NODE_API = `${process.env.REACT_APP_WALLET_SERVICE}`
 const NODE_QRY = '/ping'

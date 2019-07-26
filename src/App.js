@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Footer from './Footer.js'
-import { Row } from 'reactstrap';
 
 const NODE_API = `${process.env.REACT_APP_WALLET_SERVICE}`
 
@@ -17,7 +16,7 @@ class App extends Component {
     }
 
 render() {
-  var msg = 'Please Enter ID'
+  var msg = '-'
   var data = this.state.address_id_png
   if (this.state.address_id_png) {
     msg = this.state.address_id
