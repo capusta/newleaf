@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import { Container, Col, Row } from 'react-bootstrap';
 import logo from './logo.svg';
 import './App.css';
 import Footer from './Footer.js'
+
+const fill = {
+    "min-height": "90vh",
+};
 
 const NODE_API = `${process.env.REACT_APP_WALLET_SERVICE}`
 
@@ -16,22 +21,30 @@ class App extends Component {
     }
 
 render() {
-  var msg = '-'
+  // we're just interested in drawing the png and showing the ID
   var data = this.state.address_id_png
-  if (this.state.address_id_png) {
-    msg = this.state.address_id
+  if (this.state.address_id_png && this.state.address_id) {
+    //const msg = this.state.address_id
+    var out = (
+      <Col className="centered">
+        <div>{this.state.address_id}</div>
+        <div><img src={`data:${this.state.address_id_png}`}/></div>
+      </Col>
+    );
   }
 
   return (
-    <Row>
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-      <div> id { msg } </div>
+    <Container>
+      <Row style={fill}>
+        {out}
+	    <Col>
+          <Row className="centered">
+            <img src={logo} className="App-logo" alt="logo" />
+	      </Row>
+	    </Col>
+      </Row>
       <Footer />
-    </div>
-    </Row>
+    </Container>
     );
     }
 };

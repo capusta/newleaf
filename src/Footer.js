@@ -39,13 +39,11 @@ class Footer extends Component {
 
 render() {
     return (
-    <div>
-        <div style={footerStyle}>
-            <b> env: </b> {process.env.NODE_ENV}
-            <b> client: </b> {this.state.appSha}
-            <b> server: </b> {this.state.serverId}
-        </div>
-    </div>
+    <Row className="centered">
+        <Col><b> env: </b><br/>{process.env.NODE_ENV}</Col>
+        <Col><b> server:</b><br/> {this.state.serverId}</Col>
+        <Col><b>client: </b><br/>{this.state.appSha}</Col>
+    </Row>
     );
     }
 };
