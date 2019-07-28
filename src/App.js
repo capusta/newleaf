@@ -5,7 +5,7 @@ import './App.css';
 import Footer from './Footer.js'
 
 const fill = {
-    "min-height": "90vh",
+    "minHeight": "90vh",
 };
 
 const NODE_API = `${process.env.REACT_APP_WALLET_SERVICE}`
@@ -13,12 +13,21 @@ const NODE_API = `${process.env.REACT_APP_WALLET_SERVICE}`
 class App extends Component {
     constructor(props) {
         super(props);
+
+        // bind props that are passed down to children
+        this.handleId = this.handleId.bind(this)
+
         this.state = {
             address_id: null,
             address_id_png: null,
             loading: false
         }
-    }
+    };
+
+    handleId(id) {
+        var that = this;
+        // fetch a wallet id's corresponding image
+        }
 
 render() {
   // we're just interested in drawing the png and showing the ID
