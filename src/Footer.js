@@ -7,9 +7,7 @@ const NODE_QRY = '/ping'
 const footerStyle = {
   fontSize: "15px",
   textAlign: "center",
-  left: "0",
-  bottom: "0",
-  width: "100%"
+  alignSelf: "flex-end",
 };
 
 class Footer extends Component {

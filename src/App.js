@@ -3,10 +3,7 @@ import { Container, Col, Row } from 'react-bootstrap';
 import logo from './logo.svg';
 import './App.css';
 import Footer from './Footer.js'
-
-const fill = {
-    "minHeight": "90vh",
-};
+import TipJar from './TipJar.js'
 
 const NODE_API = `${process.env.REACT_APP_WALLET_SERVICE}`
 
@@ -56,10 +53,11 @@ render() {
 
   return (
     <Container>
-        <Row className="justify-content-sm-center">
+        <Row className="justify-content-sm-center flex-grow-1">
           <img src={logo} className="App-logo" alt="logo" />
         </Row>
         {out}
+	    <TipJar handleId = {this.handleId} />
       <Footer />
     </Container>
     );
