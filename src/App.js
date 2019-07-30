@@ -27,6 +27,19 @@ class App extends Component {
     handleId(id) {
         var that = this;
         // fetch a wallet id's corresponding image
+        console.log(`app fetching ${id}`)
+        fetch(`${NODE_API}/${id}`)
+        .then(res => {
+            if(res.ok){
+                return res.json()
+            } else {
+                that.setState({address_id: null})
+            }
+        })
+        .then(data => that.setState({
+            address_id_png: data.data,
+            address_id: id
+            }))
         }
 
 render() {
@@ -35,23 +48,18 @@ render() {
   if (this.state.address_id_png && this.state.address_id) {
     //const msg = this.state.address_id
     var out = (
-      <Col className="centered">
-        <div>{this.state.address_id}</div>
+      <Row className="justify-content-sm-center">
         <div><img src={`data:${this.state.address_id_png}`}/></div>
-      </Col>
+      </Row>
     );
   }
 
   return (
     <Container>
-      <Row style={fill}>
+        <Row className="justify-content-sm-center">
+          <img src={logo} className="App-logo" alt="logo" />
+        </Row>
         {out}
-	    <Col>
-          <Row className="centered">
-            <img src={logo} className="App-logo" alt="logo" />
-	      </Row>
-	    </Col>
-      </Row>
       <Footer />
     </Container>
     );

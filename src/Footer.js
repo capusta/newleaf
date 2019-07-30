@@ -5,10 +5,7 @@ const NODE_API = `${process.env.REACT_APP_WALLET_SERVICE}`
 const NODE_QRY = '/ping'
 
 const footerStyle = {
-  backgroundColor: "rgb(227, 224, 230)",
   fontSize: "15px",
-  color: "#83828d",
-  borderTop: "1px solid #E7E7E7",
   textAlign: "center",
   left: "0",
   bottom: "0",
@@ -39,7 +36,7 @@ class Footer extends Component {
 
 render() {
     return (
-    <Row className="centered">
+    <Row style={footerStyle}>
         <Col><b> env: </b><br/>{process.env.NODE_ENV}</Col>
         <Col><b> server:</b><br/> {this.state.serverId}</Col>
         <Col><b>client: </b><br/>{this.state.appSha}</Col>
