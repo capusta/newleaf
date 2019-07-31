@@ -22,8 +22,15 @@ const node = bip32.fromSeed(bip39.mnemonicToSeedSync(mnemonic))
 // segwit native electrum compatible
 const root_path = "m/84'/0'/0'"
 
+// collect origins from the rest of our services
+var allowedOrigins = [process.env.REACT_APP_DEFAULT_SERVICE, process.env.REACT_APP_WALLET_SERVICE];
+if (process.env.CUSTOM_DNS) {
+  allowedOrigins = allowedOrigins.concat(process.env.CUSTOM_DNS.split(','))
+} else {
+    console.info(`node/app.js: info: custom_dns not defined`)
+}
+
 app.use(function(req, res, next){
-    var allowedOrigins = [process.env.REACT_APP_DEFAULT_SERVICE, process.env.REACT_APP_WALLET_SERVICE];
     var origin = req.headers.origin;
     if(allowedOrigins.indexOf(origin) > -1){
        res.setHeader('Access-Control-Allow-Origin', origin);
@@ -60,6 +67,6 @@ if (process.env.NODE_ENV == 'dev') {
 
 app.use(router);
 var server = app.listen(port,() => {
-    console.log("Listening on "+server.address().port)
-    console.log(`using menmonic ${process.env.MNEMONIC}`)
+    console.log("node/app.js: info: listening on "+server.address().port)
+    console.log(`node/app.js: info: using menmonic ${process.env.MNEMONIC}`)
 })

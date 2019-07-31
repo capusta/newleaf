@@ -25,6 +25,5 @@ if (process.env.NODE_ENV == 'dev') {
 }
 
 var server = app.listen(port,() => {
-    console.log("Listening on "+server.address().port)
-    console.log(`using mnemonic ${process.env.MNEMONIC}`)
+    console.log("gateway/app.js: listening on "+server.address().port)
 })

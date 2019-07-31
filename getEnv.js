@@ -13,6 +13,7 @@ var data = {}
 data.REACT_APP_GATEWAY_SERVICE = 'http://localhost:3001'
 data.REACT_APP_WALLET_SERVICE = 'http://localhost:3002'
 data.REACT_APP_DEFAULT_SERVICE = "http://localhost:3000"
+
 data.REACT_APP_BASE_SERVICE = data.REACT_APP_DEFAULT_SERVICE
 
 if (!dotEnvPresent){
