@@ -1,5 +1,14 @@
 ### newleaf
-A devops-centered approach to deploying nicely wrapped code (for free!).
+A devops-centered approach to deploying your very own piggy-bank tip-jar (for free!).  Ability to
+generate personal crypto QR codes.
+
+Goals:
+
+1.  Do not spend any money on the project.
+2.  Ability to take cryptocurrency payments.
+3.  Implement only "passive" wallet functions (no ability to send coins).
+4.  Security lies solely with user.
+
 #### Getting Started (Level 1)
 1. Download and install [Vagrant](https://www.vagrantup.com/downloads.html)
 3. Download and install [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)

@@ -1,9 +1,15 @@
 var Express = require('express')
+var Ddos = require('ddos')
+var ddos = new Ddos({burst: 6, limit: 10});
 var router = Express.Router()
 var app = Express();
+app.use(ddos.express)
 
 'use strict'
+
+// load regular env variables
 require('dotenv').config();
+// load react-specific variables
 require('dotenv').config({path: '.env.local'})
 
 app.set('trust proxy', true);
