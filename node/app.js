@@ -1,4 +1,5 @@
 var Express = require('express')
+var validator = require('validator')
 var Ddos = require('ddos')
 var ddos = new Ddos({burst: 6, limit: 10});
 var router = Express.Router()
@@ -51,6 +52,9 @@ router.get('/ping',function(req,res){
 
 router.get('/:id',function(req,res,next){
     // TODO: implement sanitizing of integers
+    if (!validator.isNumeric(req.params.id)) {
+      return res.status(400).send();
+    }
     console.log(`generating id ${req.params.id}`);
     const derive_path = root_path+"/0/"+req.params.id;
     const address = bitcoin.payments.p2wpkh({ pubkey: node.derivePath(derive_path).publicKey }).address;
