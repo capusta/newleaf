@@ -1,6 +1,8 @@
 var Express   = require('express')
 var validator = require('validator')
 var Ddos      = require('ddos')
+var farmhash  = require('farmhash')
+
 var ddos = new Ddos({burst: 6, limit: 10});
 var router = Express.Router()
 var app = Express();
@@ -51,18 +53,27 @@ router.get('/ping',function(req,res){
 })
 
 router.get('/:id',function(req,res,next){
-    // TODO: implement sanitizing of integers
-    if (!validator.isNumeric(req.params.id)) {
+    var s_id = null;  //sanitized ID
+
+    if (validator.isNumeric(req.params.id)) {
+      s_id = req.params.id % 20
+    }
+
+    if (validator.isAlphanumeric(req.params.id) && s_id == null){
+      s_id = farmhash.hash32(req.params.id) % 20
+    }
+
+    if (s_id == null) {
       return res.status(400).send();
     }
-    console.log(`generating id ${req.params.id}`);
-    const derive_path = root_path+"/0/"+req.params.id;
+
+    const derive_path = root_path+"/0/"+s_id;
     const address = bitcoin.payments.p2wpkh({ pubkey: node.derivePath(derive_path).publicKey }).address;
     QR.toDataURL(address, function (err, url) {
         if (err){
             next(err)
         } else {
-            res.end(JSON.stringify({ id: req.params.id, address: address, data: url.split(':')[1]}));
+            res.end(JSON.stringify({ id: s_id, address: address, data: url.split(':')[1]}));
         }
     })
 });

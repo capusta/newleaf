@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Col, Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import logo from './logo.svg';
 import './App.css';
 import Footer from './Footer.js'
@@ -41,12 +41,11 @@ class App extends Component {
 
 render() {
   // we're just interested in drawing the png and showing the ID
-  var data = this.state.address_id_png
   if (this.state.address_id_png && this.state.address_id) {
     //const msg = this.state.address_id
     var out = (
       <Row className="justify-content-sm-center">
-        <div><img src={`data:${this.state.address_id_png}`}/></div>
+        <div><img src={`data:${this.state.address_id_png}`} alt=""/></div>
       </Row>
     );
   }
