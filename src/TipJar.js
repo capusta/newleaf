@@ -12,10 +12,8 @@ class TipJar extends Component {
 
     handleChange(event) {
         let v = event.target.value
-        if(v == Number.parseInt(v)){
-          this.setState({id: v});
-          this.props.handleId(v);
-        };
+        this.setState({id: v});
+        this.props.handleId(v);
     }
 
     render() {

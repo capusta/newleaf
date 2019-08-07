@@ -1,6 +1,6 @@
-var Express = require('express')
+var Express   = require('express')
 var validator = require('validator')
-var Ddos = require('ddos')
+var Ddos      = require('ddos')
 var ddos = new Ddos({burst: 6, limit: 10});
 var router = Express.Router()
 var app = Express();
