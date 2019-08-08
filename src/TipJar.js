@@ -8,15 +8,27 @@ class TipJar extends Component {
         this.state = {
             id: null
         }
+     this.timer = null;
+    };
+
+    componentDidUpdate(prevProps, prevState) {
+       clearTimeout(this.timer);
+    };
+
+    showChange(v){
+      this.setState({id: v});
+      this.props.handleId(v);
     };
 
     handleChange(event) {
-        let v = event.target.value
-        this.setState({id: v});
-        this.props.handleId(v);
+      let v = event.target.value
+      console.log(`setting timer on ${v}`)
+      clearTimeout(this.timer);
+      this.timer = setTimeout(function(){this.showChange(v)}.bind(this), 2000)
     }
 
     render() {
+        //TODO: display waiting state when doing timeout
         return (
           <Row className="justify-content-sm-center">
             <Form.Group>

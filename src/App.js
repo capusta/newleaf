@@ -34,6 +34,7 @@ class App extends Component {
             }
         })
         .then(data => that.setState({
+            //TODO: do not update state when data.data is null
             address_id_png: data.data,
             address_id: id
             }))
