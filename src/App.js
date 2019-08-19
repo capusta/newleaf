@@ -37,19 +37,24 @@ class App extends Component {
             if (data['data']){
                 that.setState({
                     address_id_png: data.data,
-                    address_id: id
+                    address: data.address,
+                    loading: false
                 })
             }
           })
-        }
+        };
 
 render() {
   // we're just interested in drawing the png and showing the ID
-  if (this.state.address_id_png && this.state.address_id) {
-    //const msg = this.state.address_id
+  if (this.state.address_id_png && this.state.address) {
     var out = (
       <Row className="justify-content-sm-center">
         <div><img src={`data:${this.state.address_id_png}`} alt=""/></div>
+      </Row>
+    );
+    var id = (
+      <Row className="justify-content-sm-center">
+        <div>{this.state.address}</div>
       </Row>
     );
   }
@@ -61,6 +66,7 @@ render() {
         </Row>
         {out}
 	    <TipJar handleId = {this.handleId} />
+        {id}
       <Footer />
     </Container>
     );

@@ -11,8 +11,8 @@ class TipJar extends Component {
      this.timer = null;
     };
 
-    componentDidUpdate(prevProps, prevState) {
-       clearTimeout(this.timer);
+    shouldComponentUpdate(nextProps, nextState) {
+        clearTimeout(this.timer);
     };
 
     showChange(v){
@@ -22,7 +22,6 @@ class TipJar extends Component {
 
     handleChange(event) {
       let v = event.target.value
-      console.log(`setting timer on ${v}`)
       clearTimeout(this.timer);
       this.timer = setTimeout(function(){this.showChange(v)}.bind(this), 2000)
     }
