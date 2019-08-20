@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Container, Row } from 'react-bootstrap';
-import logo from './logo.svg';
 import './App.css';
 import Footer from './Footer.js'
 import TipJar from './TipJar.js'
+import Logo from './Logo.js'
 
 const NODE_API = `${process.env.REACT_APP_WALLET_SERVICE}`
 
@@ -13,6 +13,7 @@ class App extends Component {
 
         // bind props that are passed down to children
         this.handleId = this.handleId.bind(this)
+        this.setLoading = this.setLoading.bind(this)
 
         this.state = {
             address_id: null,
@@ -44,6 +45,11 @@ class App extends Component {
           })
         };
 
+    setLoading() {
+        console.log(`loading called`)
+        this.setState({loading: true});
+    };
+
 render() {
   // we're just interested in drawing the png and showing the ID
   if (this.state.address_id_png && this.state.address) {
@@ -61,12 +67,10 @@ render() {
 
   return (
     <Container>
-        <Row className="justify-content-sm-center flex-grow-1">
-          <img src={logo} className="App-logo" alt="logo" />
-        </Row>
+        <Logo loading = {this.state.loading} />
         {out}
-	    <TipJar handleId = {this.handleId} />
         {id}
+	    <TipJar handleId = {this.handleId} setLoading = {this.setLoading} isLoading = {this.state.loading} />
       <Footer />
     </Container>
     );

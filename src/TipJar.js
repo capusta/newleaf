@@ -12,7 +12,13 @@ class TipJar extends Component {
     };
 
     shouldComponentUpdate(nextProps, nextState) {
+        // only re-render when next state is not loading
+        if (!nextProps.loading) {
+          console.log('not updating')
+          return false;
+        }
         clearTimeout(this.timer);
+        return true;
     };
 
     showChange(v){
@@ -24,6 +30,7 @@ class TipJar extends Component {
       let v = event.target.value
       clearTimeout(this.timer);
       this.timer = setTimeout(function(){this.showChange(v)}.bind(this), 2000)
+      this.props.setLoading();
     }
 
     render() {
