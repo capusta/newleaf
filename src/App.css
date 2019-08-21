@@ -1,7 +1,16 @@
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
+  animation: App-logo-spin infinite 10s linear;
   height: 20vmin;
   pointer-events: none;
+}
+
+
+.App-logo-thinking {
+    animation:
+        change-background infinite 1s linear,
+        App-logo-spin infinite 10s linear;
+    height: 20vmin;
+    pointer-events: none;
 }
 
 .App-link {
@@ -15,4 +24,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+@keyframes change-background {
+  0% { opacity: 1; }
+  50%   { opacity: 0; }
+  100% { opacity: 1; }
 }

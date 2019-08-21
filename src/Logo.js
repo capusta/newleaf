@@ -16,13 +16,12 @@ class Logo extends Component {
     }
 
     render() {
+//        TODO: dont make svg src - embed directly to change color
+        const animate = this.state.loading ? 'App-logo-thinking' : 'App-logo'
         return (
           <React.Fragment>
             <Row className="justify-content-sm-center flex-grow-1">
-                <img src={logo} className="App-logo" alt="logo" />
-            </Row>
-            <Row className="justify-content-sm-center flex-grow-1">
-            {this.state.loading + ''}
+                <img src={logo} className={animate} alt="logo" />
             </Row>
           </React.Fragment>
         )
