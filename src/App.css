@@ -1,6 +1,5 @@
 .App-logo {
   animation: App-logo-spin infinite 10s linear;
-  height: 20vmin;
   pointer-events: none;
 }
 
@@ -9,8 +8,11 @@
     animation:
         change-background infinite 1s linear,
         App-logo-spin infinite 10s linear;
-    height: 20vmin;
     pointer-events: none;
+}
+
+.svgscale {
+    height: 20vmin;
 }
 
 .App-link {
