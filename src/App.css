@@ -3,7 +3,6 @@
   pointer-events: none;
 }
 
-
 .App-logo-thinking {
     animation:
         change-background infinite 1s linear,
@@ -11,7 +10,8 @@
     pointer-events: none;
 }
 
-.svgscale {
+/* used in logo.svg */
+.inlinesvg {
     height: 20vmin;
 }
 

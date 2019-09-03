@@ -16,8 +16,8 @@ class Logo extends Component {
     }
 
     render() {
-//        TODO: dont make svg src - embed directly to change color
         const animate = this.state.loading ? 'App-logo-thinking' : 'App-logo'
+        const fillColor = this.state.loading ? 'fill="#94d31b"' : 'fill="#323232"'
         return (
           <React.Fragment>
             <Row className="justify-content-sm-center flex-grow-1">
