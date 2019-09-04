@@ -13,7 +13,7 @@ class TipJar extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         // only re-render when next state is not loading
-        if (!nextProps.loading) {
+        if (nextProps.isLoading) {
           console.log('not updating')
           return false;
         }

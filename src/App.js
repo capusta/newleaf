@@ -18,7 +18,8 @@ class App extends Component {
         this.state = {
             address_id: null,
             address_id_png: null,
-            loading: false
+            loading: false,
+            error: true
         }
     };
 
@@ -31,7 +32,8 @@ class App extends Component {
             if(res.ok){
                 return res.json()
             } else {
-                that.setState({address_id: null})
+//            TODO: bubble up non 200 errors
+                that.setState({address_id: null, error: true})
             }
         })
         .then(data => {
@@ -70,7 +72,7 @@ render() {
         <Logo loading = {this.state.loading} />
         {out}
         {id}
-	    <TipJar handleId = {this.handleId} setLoading = {this.setLoading} isLoading = {this.state.loading} />
+	    <TipJar handleId = {this.handleId} setLoading = {this.setLoading} isLoading = {this.state.loading} hasError={this.state.error}/>
       <Footer />
     </Container>
     );
