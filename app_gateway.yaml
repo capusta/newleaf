@@ -1,4 +1,12 @@
 runtime: nodejs10
+
 service: gateway
+
 env_variables:
   BOOTSTRAP_ENTRYPOINT: 'gateway/app.js'
+
+handlers:
+- url: .*
+  secure: always
+  script: auto
+  redirect_http_response_code: 301
