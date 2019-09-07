@@ -9,7 +9,6 @@ class Logo extends Component {
         this.state = {
           loading: props.loading
         };
-        console.log(this.state.loading + ' - dane')
     };
 
     componentWillReceiveProps(nextProps) {
@@ -17,6 +16,7 @@ class Logo extends Component {
     }
 
     render() {
+//    TODO: make red when error
         const animate = this.state.loading ? 'App-logo-thinking' : 'App-logo'
         const fillColor = this.state.loading ? 'fill="#94d31b"' : 'fill="#323232"'
         const Icon = () => <SVG src={logo}

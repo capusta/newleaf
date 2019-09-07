@@ -32,7 +32,7 @@ const node = bip32.fromSeed(bip39.mnemonicToSeedSync(mnemonic))
 const root_path = "m/84'/0'/0'"
 
 // collect origins from the rest of our services
-var allowedOrigins = [process.env.REACT_APP_DEFAULT_SERVICE, process.env.REACT_APP_WALLET_SERVICE];
+var allowedOrigins = [process.env.REACT_APP_DEFAULT_SERVICE, process.env.REACT_APP_WALLET_SERVICE, process.env.REACT_APP_BASE_SERVICE];
 if (process.env.CUSTOM_DNS) {
   allowedOrigins = allowedOrigins.concat(process.env.CUSTOM_DNS.split(','))
 } else {

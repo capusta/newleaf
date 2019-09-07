@@ -11,10 +11,11 @@ class TipJar extends Component {
      this.timer = null;
     };
 
+    //only update when not loading
     shouldComponentUpdate(nextProps, nextState) {
         // only re-render when next state is not loading
         if (nextProps.isLoading) {
-          console.log('not updating')
+          console.log(' ... still loading ...')
           return false;
         }
         clearTimeout(this.timer);
