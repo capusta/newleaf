@@ -7,7 +7,8 @@ class Logo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          loading: props.loading
+          loading: props.loading,
+          error: false
         };
     };
 
@@ -18,7 +19,7 @@ class Logo extends Component {
     render() {
 //    TODO: make red when error
         const animate = this.state.loading ? 'App-logo-thinking' : 'App-logo'
-        const fillColor = this.state.loading ? 'fill="#94d31b"' : 'fill="#323232"'
+        let fillColor = this.state.loading ? 'fill="#94d31b"' : 'fill="#323232"'
         const Icon = () => <SVG src={logo}
                                 preProcessor={code => code.replace(/fill=".*?"/g, fillColor)} />;
         return (

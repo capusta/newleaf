@@ -16,10 +16,9 @@ class App extends Component {
         this.setLoading = this.setLoading.bind(this)
 
         this.state = {
-            address_id: null,
             address_id_png: null,
             loading: false,
-            error: true
+            error: false
         }
     };
 
@@ -32,8 +31,7 @@ class App extends Component {
             if(res.ok){
                 return res.json()
             } else {
-//            TODO: bubble up non 200 errors
-                that.setState({address_id: null, error: true})
+                that.setState({loading: false, error: true})
             }
         })
         .then(data => {
@@ -41,7 +39,8 @@ class App extends Component {
                 that.setState({
                     address_id_png: data.data,
                     address: data.address,
-                    loading: false
+                    loading: false,
+                    error: false
                 })
             }
           })
