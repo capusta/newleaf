@@ -68,7 +68,7 @@ render() {
 
   return (
     <Container>
-        <Logo loading = {this.state.loading} />
+        <Logo loading = {this.state.loading} error = {this.state.error} />
         {out}
         {id}
 	    <TipJar handleId = {this.handleId} setLoading = {this.setLoading} isLoading = {this.state.loading} hasError={this.state.error}/>

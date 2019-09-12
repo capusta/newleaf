@@ -13,13 +13,16 @@ class Logo extends Component {
     };
 
     componentWillReceiveProps(nextProps) {
-      this.setState({ loading: nextProps.loading });
+      this.setState({ loading: nextProps.loading, error: nextProps.error });
     }
 
     render() {
 //    TODO: make red when error
         const animate = this.state.loading ? 'App-logo-thinking' : 'App-logo'
         let fillColor = this.state.loading ? 'fill="#94d31b"' : 'fill="#323232"'
+        if (this.state.error) {
+            fillColor = 'fill="#7B0208"'
+        }
         const Icon = () => <SVG src={logo}
                                 preProcessor={code => code.replace(/fill=".*?"/g, fillColor)} />;
         return (
