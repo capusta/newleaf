@@ -17,7 +17,6 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 3002, host: 3002, id: 'node_wallet'
 
   config.vm.provision "ansible_local" do |ansible|
-    ansible.install_mode = "pip"
     ansible.galaxy_role_file = "ansible/requirements.yml"
     ansible.playbook = "ansible/playbook.yml"
     ansible.raw_arguments = ["-Dv"]

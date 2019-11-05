@@ -34,6 +34,7 @@
       when: deploy is defined and deploy|bool
       tags: [ deploy ]
     - name: Check on deployment
+      when: deploy is defined and deploy|bool
       register: is_deployed
       async_status: jid={{ deployment_sleeper.ansible_job_id }}
       until: is_deployed.finished
