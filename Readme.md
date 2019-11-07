@@ -31,3 +31,5 @@ Goals:
 3.  Deploy the application to google:
   `vagrant provision --provision-with deploy`
 
+#### MISC
+- Generating a seed:  `vagrant ssh -c  '/vagrant/ansible/scripts/genSeed.js'`.  Keep this seed safe somewhere and do not shrea it with anyone.

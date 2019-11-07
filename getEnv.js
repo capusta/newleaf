@@ -29,7 +29,7 @@ if (!dotEnvPresent){
     let bucketName;
     // thanks http://gunargessner.com/gcloud-env-vars/
    async function get_data(){
-     const response = await fetch(url);
+     const response = await fetch(url, {headers: {'Metadata-Flavor': 'Google'}});
      const bucketName = await response.text();
      return bucketName;
    }
