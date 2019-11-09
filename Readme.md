@@ -33,3 +33,4 @@ Goals:
 
 #### MISC
 - Generating a seed:  `vagrant ssh -c  '/vagrant/ansible/scripts/genSeed.js'`.  Keep this seed safe somewhere and do not shrea it with anyone.
+- Verify 3rd party domain: `vagrant ssh -c 'gcloud domains verify DOMAIN'`
